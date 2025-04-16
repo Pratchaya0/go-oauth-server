@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option go_package = "github.com/Pratchaya0/go-oauth-server";
+
+message AccessTokenCheckRequest {
+    string accessToken = 1;
+}
+
+message AccessTokenCheckResponse {
+    bool isValid = 1;
+}
+
+message RoleCountRequest {}
+
+message RoleCountResponse {
+    int64 count = 1;
+}
+
+service AuthGrpcService {
+    rpc AccessTokenCheck(AccessTokenCheckRequest) returns (AccessTokenCheckResponse);
+    rpc RoleCount (RoleCountRequest) returns (RoleCountResponse);
+}

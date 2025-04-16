@@ -1,0 +1,47 @@
+version: '3.8'
+
+name: ritsuko-db
+
+services:
+  ritsuko-pgadmin:
+    image: dpage/pgadmin4
+    container_name: ritsuko-pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+
+  ritsuko-auth-db:
+    image: postgres
+    container_name: ritsuko-auth-db
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: auth
+    ports:
+      - "27020:5432"
+    volumes:
+      - postgres_auth_data:/var/lib/postgresql/data
+
+  ritsuko-user-db:
+    image: postgres
+    container_name: ritsuko-user-db
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: user
+    ports:
+      - "27021:5432"
+    volumes:
+      - postgres_user_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_auth_data:
+  postgres_user_data:
+  pgadmin_data:

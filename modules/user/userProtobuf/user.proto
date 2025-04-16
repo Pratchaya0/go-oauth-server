@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option go_package = "github.com/Pratchaya0/go-oauth-server";
+
+message UserProfile {
+    int64 id = 1;
+    string email = 2;
+    string username = 3;
+    int64 role_id = 4;
+    string created_at = 5;
+    string updated_at = 6;
+}
+
+message CredentialSearchRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message FindOneUserProfieToRefreshRequest {
+    int64 user_id = 1;
+}
+
+service UserGrpcService {
+    rpc CredetialSearch(CredentialSearchRequest) returns (UserProfile);
+    rpc FindOneUserProfieToRefresh(FindOneUserProfieToRefreshRequest) returns (UserProfile);
+}
