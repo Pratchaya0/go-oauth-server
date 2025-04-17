@@ -17,8 +17,15 @@ type (
 	}
 
 	CreateUserRequestDTO struct {
-		UserName string `json:"username" form:"username" validate:"required,max=64"`
-		Email    string `json:"email" form:"email" validate:"required,email,max=255"`
-		Password string `json:"password" form:"password" validate:"required,max=32"`
+		FirstName string `json:"firstname" form:"firstname" validate:"required,max=255"`
+		LastName  string `json:"lastname" form:"lastname" validate:"required,max=255"`
+		UserName  string `json:"username" form:"username" validate:"required,max=64"`
+		Email     string `json:"email" form:"email" validate:"required,email,max=255"`
+		Password  string `json:"password" form:"password" validate:"required,max=32"`
+	}
+
+	UpdateUserRequestDTO struct {
+		FirstName string `json:"firstname" form:"firstname" validate:"required,max=255"`
+		LastName  string `json:"lastname" form:"lastname" validate:"required,max=255"`
 	}
 )

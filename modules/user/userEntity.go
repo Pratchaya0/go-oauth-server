@@ -7,7 +7,7 @@ type (
 		ID                          uint   `gorm:"primaryKey"`
 		Username                    string `gorm:"unique;not null"`
 		Email                       string `gorm:"unique;not null"`
-		PasswordHash                string `gorm:"not null"`
+		PasswordHash                []byte `gorm:"not null"`
 		FirstName                   string
 		LastName                    string
 		IsActive                    bool `gorm:"default:true"`

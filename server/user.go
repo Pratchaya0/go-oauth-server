@@ -28,11 +28,12 @@ func (s *server) userService() {
 		grpcServer.Serve(lis)
 	}()
 
-	_ = httpHandler
 	_ = queueHandler
 
 	user := s.app.Group("api/v1/user")
 
 	user.GET("/health", s.healthCheckService)
+	user.POST("/create", httpHandler.CreateOneUser)
+	user.POST("/update/:userId", httpHandler.UpdateOneUserDetails)
 
 }
